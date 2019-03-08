@@ -30,11 +30,9 @@ docker-snapshot:
       DOCKER_HOST: "tcp://docker-dind"
       DOCKER_IMAGE_PRIVATE: "docker-registry.linagora.com:5000/linshare-snapshots/linshare-ui-editor-onlyoffice"
   script:
-    - guess-version.sh guest
-    - source version.env
     - docker-tag-computing.sh ${VERSION} docker-tag-and-push.env
     - docker login -u ${REGISTRY_USER} -p ${REGISTRY_TOKEN} docker-registry.linagora.com:5000
-    - docker build . -t build:latest
+    - docker build . -t build:latest --build-arg VERSION="${VERSION}" --build-arg CHANNEL="${CHANNEL}"
     - docker-tag-and-push.sh build:latest ${DOCKER_IMAGE_PRIVATE}
     - docker logout docker-registry.linagora.com:5000
   only:

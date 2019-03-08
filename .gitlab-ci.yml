@@ -36,6 +36,7 @@ docker-snapshot:
     - docker-tag-and-push.sh build:latest ${DOCKER_IMAGE_PRIVATE}
     - docker logout docker-registry.linagora.com:5000
   only:
+    - triggers
     - master@linagora/lgs/linshare/saas/linshare-ui-editor-onlyoffice-dockerfile
     - /^maintenance-.*/@linagora/lgs/linshare/saas/linshare-ui-editor-onlyoffice-dockerfile
   except:

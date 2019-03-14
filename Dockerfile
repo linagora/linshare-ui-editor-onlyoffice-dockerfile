@@ -6,6 +6,8 @@ ARG VERSION="2.0.0-SNAPSHOT"
 ARG CHANNEL="snapshots"
 
 ENV LINSHARE_VERSION=$VERSION
+ENV LINSHARE_BACKEND_HOST="linshare.local"
+ENV LINSHARE_BACKEND_PORT=28080
 
 RUN apt-get update && apt-get install curl bzip2 -y && apt-get clean && \
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
